@@ -29,7 +29,7 @@ struct Top3Users: View {
                             image
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 64, height: 64)
+                                .frame(width: 48, height: 48)
                                 .clipShape(.circle)
                                 .overlay(Circle().stroke(.white, lineWidth: 2))
                                 .shadow(radius: 4)
@@ -42,7 +42,7 @@ struct Top3Users: View {
                             .foregroundStyle(.black)
 
                         Text(user.subscribers)
-                            .font(.caption2)
+                            .font(.footnote)
                             .foregroundStyle(.gray)
 
                         Text("\(user.rank)")
@@ -52,15 +52,16 @@ struct Top3Users: View {
                             .background(Color(hex: "D2EBCD"))
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
-                    .border(.red)
+                    .frame(maxWidth: 80)
+//                    .border(.red)
 
                     Spacer()
                 }
             }
-            .border(.blue)
+//            .border(.blue)
         }
         .frame(maxWidth: .infinity)
-        .border(.green)
+//        .border(.green)
 //        .padding(.horizontal)
     }
 }

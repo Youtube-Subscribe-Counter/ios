@@ -11,58 +11,52 @@ struct Top3Users: View {
     var users: [User]
 
     var body: some View {
-        GeometryReader { geometry in
-            let width = geometry.size.width * 0.2
+        let screenWidth = UIScreen.main.bounds.width
+        let width = screenWidth * 0.2
 
-            HStack(alignment: .bottom, spacing: 16) {
-                Spacer()
+        HStack(alignment: .bottom, spacing: 16) {
+            Spacer()
 
-                ForEach(users, id: \.rank) { user in
-                    // (rank, height)
-                    // (1, 160)
-                    // (2, 120)
-                    // (3, 80)
-                    let height = CGFloat(-40 * user.rank + 200)
+            ForEach(users, id: \.rank) { user in
+                // (rank, height)
+                // (1, 160)
+                // (2, 120)
+                // (3, 80)
+                let height = CGFloat(-40 * user.rank + 200)
 
-                    VStack(spacing: 16) {
-                        AsyncImage(url: URL(string: user.thumbnail)) { image in
-                            image
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 48, height: 48)
-                                .clipShape(.circle)
-                                .overlay(Circle().stroke(.white, lineWidth: 2))
-                                .shadow(radius: 4)
-                        } placeholder: {
-                            ProgressView()
-                        }
-
-                        Text(user.name)
-                            .font(.caption)
-                            .foregroundStyle(.black)
-
-                        Text(user.subscribers)
-                            .font(.footnote)
-                            .foregroundStyle(.gray)
-
-                        Text("\(user.rank)")
-                            .font(.title2.bold())
-                            .foregroundStyle(.white)
-                            .frame(width: width, height: height)
-                            .background(Color(hex: "D2EBCD"))
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                VStack(spacing: 16) {
+                    AsyncImage(url: URL(string: user.thumbnail)) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 48, height: 48)
+                            .clipShape(.circle)
+                            .overlay(Circle().stroke(.white, lineWidth: 2))
+                            .shadow(radius: 4)
+                    } placeholder: {
+                        ProgressView()
                     }
-                    .frame(maxWidth: 80)
-//                    .border(.red)
 
-                    Spacer()
+                    Text(user.name)
+                        .font(.caption)
+                        .foregroundStyle(.black)
+
+                    Text(user.subscribers)
+                        .font(.footnote)
+                        .foregroundStyle(.gray)
+
+                    Text("\(user.rank)")
+                        .font(.title2.bold())
+                        .foregroundStyle(.white)
+                        .frame(width: width, height: height)
+                        .background(Color(hex: "D2EBCD"))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
+                .frame(maxWidth: 80)
+
+                Spacer()
             }
-//            .border(.blue)
         }
-        .frame(maxWidth: .infinity)
-//        .border(.green)
-//        .padding(.horizontal)
     }
 }
 

@@ -32,7 +32,10 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Top3Users(users: sampleUsers)
+
+            YoutuberRanking(users: sampleUsers)
         }
+        .frame(maxHeight: .infinity, alignment: .top)
         .padding()
     }
 }

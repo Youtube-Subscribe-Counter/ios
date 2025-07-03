@@ -8,11 +8,38 @@
 import SwiftUI
 
 struct YoutuberRanking: View {
+    var users: [User]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            ForEach(users, id: \.rank) { user in
+                HStack {
+                    Text("\(user.rank)")
+                        .font(.title2.bold())
+
+                    Spacer()
+
+                    VStack(alignment: .center) {
+                        Text(user.name)
+                            .font(.subheadline.bold())
+
+                        Text(user.subscribers)
+                            .font(.caption)
+                            .foregroundStyle(.gray)
+                    }
+
+                    Spacer()
+
+                    Image(systemName: "trophy.fill")
+                        .frame(width: 24, height: 24)
+                }
+                .padding(.horizontal)
+            }
+        }
+        .padding(.vertical)
     }
 }
 
 #Preview {
-    YoutuberRanking()
+    YoutuberRanking(users: [])
 }

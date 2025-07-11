@@ -29,14 +29,20 @@ struct ContentView: View {
         )
     ]
 
-    var body: some View {
-        VStack {
-            Top3Users(users: sampleUsers)
+    let isSignedIn = false
 
-            YoutuberRanking(users: sampleUsers)
+    var body: some View {
+        if !isSignedIn {
+            LoginScreen()
+        } else {
+            VStack {
+                Top3Users(users: sampleUsers)
+
+                YoutuberRanking(users: sampleUsers)
+            }
+            .frame(maxHeight: .infinity, alignment: .top)
+            .padding()
         }
-        .frame(maxHeight: .infinity, alignment: .top)
-        .padding()
     }
 }
 
